@@ -144,6 +144,8 @@ const RouteManagement = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [editingRoute, setEditingRoute] = useState<Route | null>(null)
 
+  console.log("RouteManagement: isModalOpen state", isModalOpen);
+
   const handleInputChange = (field: keyof Route, value: string | Date | RouteStatus | string[]) => {
     setNewRoute(prev => ({ ...prev, [field]: value }))
   }
@@ -167,13 +169,16 @@ const RouteManagement = () => {
       setRoutes(prev => [routeToAdd, ...prev])
       toast.success(`Rota ${newRoute.name} adicionada com sucesso!`)
     }
-    closeModal()
+    setIsModalOpen(false)
+    console.log("RouteManagement: closeModal called, setting isModalOpen to false");
+    setEditingRoute(null)
   }
 
   const openModalForEdit = (route: Route) => {
     setEditingRoute(route)
     setNewRoute(route)
     setIsModalOpen(true)
+    console.log("RouteManagement: openModalForEdit called, setting isModalOpen to true");
   }
 
   const openModalForNew = () => {
@@ -187,10 +192,12 @@ const RouteManagement = () => {
       endLocation: '',
     })
     setIsModalOpen(true)
+    console.log("RouteManagement: openModalForNew called, setting isModalOpen to true");
   }
 
   const closeModal = () => {
     setIsModalOpen(false)
+    console.log("RouteManagement: closeModal called, setting isModalOpen to false");
     setEditingRoute(null)
   }
 
