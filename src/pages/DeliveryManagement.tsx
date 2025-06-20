@@ -256,11 +256,13 @@ const DeliveryManagement = () => {
                   <Label htmlFor="status" className="text-right">
                     Status
                   </Label>
-                  <Select value={newDelivery.status} onValueChange={(value: DeliveryStatus) => handleInputChange('status', value)}>
-                    <SelectTrigger className="col-span-3">
-                      <SelectValue placeholder="Selecione o status" />
+                  <Select value={statusFilter} onValueChange={(value: DeliveryStatus | "all") => setStatusFilter(value)}>
+                    <SelectTrigger className="w-full md:w-[180px]">
+                      <Filter className="mr-2 h-4 w-4 text-gray-500" />
+                      <SelectValue placeholder="Status" />
                     </SelectTrigger>
                     <SelectContent>
+                      <SelectItem value={undefined}>Todos Status</SelectItem>
                       {(Object.keys(statusColors) as DeliveryStatus[]).map(s => (
                         <SelectItem key={s} value={s}>{s}</SelectItem>
                       ))}
@@ -307,7 +309,7 @@ const DeliveryManagement = () => {
                 <SelectValue placeholder="Status" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">Todos Status</SelectItem>
+                <SelectItem value={undefined}>Todos Status</SelectItem>
                 {(Object.keys(statusColors) as DeliveryStatus[]).map(s => (
                   <SelectItem key={s} value={s}>{s}</SelectItem>
                 ))}

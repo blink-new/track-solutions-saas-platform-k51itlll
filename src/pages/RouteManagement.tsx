@@ -267,7 +267,7 @@ const RouteManagement = () => {
                   <SelectValue placeholder="Motorista" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">Todos Motoristas</SelectItem>
+                  <SelectItem value={undefined}>Não atribuído</SelectItem>
                   {mockDriversForRoutes.map(d => (
                     <SelectItem key={d.id} value={d.id}>{d.name}</SelectItem>
                   ))}
@@ -396,7 +396,7 @@ const RouteManagement = () => {
               <Select value={newRoute.driverId} onValueChange={(value: string) => handleInputChange('driverId', value)}>
                 <SelectTrigger><SelectValue placeholder="Atribuir motorista (opcional)" /></SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">Não atribuído</SelectItem>
+                  <SelectItem value={undefined}>Não atribuído</SelectItem>
                   {mockDriversForRoutes.map(d => (
                     <SelectItem key={d.id} value={d.id}>{d.name}</SelectItem>
                   ))}
